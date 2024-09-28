@@ -41,7 +41,9 @@ public class MailItem {
     this.width = width;
     this.height = height;
     this.depth = depth;
-    this.recipient = recipient;
+    // Create a defensive copy of the recipient
+    this.recipient = new Recipient(
+            recipient.getFirstName(), recipient.getLastName(), recipient.getEmail());
   }
 
   /**
@@ -73,6 +75,10 @@ public class MailItem {
    * @return The Recipient object associated with this mail item.
    */
   public Recipient getRecipient() {
-    return recipient;
+    // Return a defensive copy of the recipient
+    return new Recipient(
+            recipient.getFirstName(),
+            recipient.getLastName(),
+            recipient.getEmail());
   }
 }
